@@ -1,25 +1,19 @@
 const mongoose = require("mongoose");
+const jwt = require("jsonwebtoken");
 
 let userSchema = new mongoose.Schema({
-    userid:{
-        type:Number,
-        required:true,
-        unique:true
-    },
-    created:{
-        type:Date,
-        required:true,default:Date.now
-    },
+   
+    
     email:{
         type:String,
-        required:true,
-    },
+        required:true
+      },
     
-    first_name:{
+    firstName:{
         type:String,
-        required:true,
+       required:true,
     },
-    last_name:{
+    lastName:{
         type:String,
         required:true,
     },
@@ -27,28 +21,38 @@ let userSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    phone_number:{
+    contactNumber:{
         type:String,
-        required:true
+       required:true
     },
-    role:{
+    role :{
         type:String,
-        required:true
-    },
-    updated:{
-        type:Date,
-        required:true,
-    },
-    user_name:{
+        default:"user",
+       },
+    token: {
         type:String,
-        required:true
-    }
-})
+    },
+    isAuthenticated:{
+        type:Boolean
+    },
+    name:String
+    
+    
+    
+},{timestamps:true})
 
 userSchema.pre("save",function(next){
- this.user_name = this.first_name + this.last_name;
+ this.name = this.firstName + " " + this.lastName;
  next();
 })
+
+userSchema.methods.generateAuthToken = function () {
+    const token = jwt.sign(
+      { _id: this._id, isAuthenticated: this.isAuthenticated },
+      "myprivatekey"
+    );
+    return token;
+  };
 
 
 const Users = mongoose.model("users",userSchema);

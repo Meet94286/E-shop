@@ -5,35 +5,43 @@ var SchemaTypes = mongoose.Schema.Types;
 
 
 let productSchema = new mongoose.Schema({
-    product_id:{
+   
+    availableItems:{
         type:Number,
-    },
-    available_items:{
-        type:Number,
+        required:true
     },
     category:{
         type:String,
+        required:true
     },
-    created:{
-        type:Date,default:Date.now
+    createdAt:{
+        type:Date,
+        default:Date.now
     },
     description:{
         type:String,
+        required:true
     },
-    image_url:{
+    imageURL:{
         type:String,
+        required:true
     },
     manufacturer:{
         type:String,
+        required:true
     },
     name:{
         type:String,
+        required:true
     },
     price:{
         type:SchemaTypes.Double,
+        required:true
+
     },
-    updated:{
+    updatedAt:{
         type:Date,
+        default:Date.now()
     }
 })
 

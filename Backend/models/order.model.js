@@ -4,24 +4,31 @@ require("mongoose-double")(mongoose);
 var SchemaTypes = mongoose.Schema.Types;
 
 let orderSchema = new mongoose.Schema({
-    orderid:{
+    orderId:{
         type:Number,
     },
     amount:{
         type:SchemaTypes.Double,
     },
-    order_date:{
+    orderDate:{
         type:Date,
+        default:Date.now()
     },
-    product_product_id:{
-        type:Number,
+    product:{
+        type:Object,
     },
-    shipping_adderess_id:{
-        type:Number,
+    address:{
+        type:Object,
     },
-    user_id:{
-        type:Number,
-    }
+    user:{
+        type:Object,
+    },
+    quantity:Number,
+    productId:{
+        type:Number,required:true},
+    
+    addressId:{
+        type:Number,required:true}
     
 })
 
