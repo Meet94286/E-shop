@@ -4,9 +4,7 @@ const Products = require("../models/product.model");
 const Users = require("../models/user.model");
 
  async function orders(req,res){
-     const t = 2;
-    req.header("x-auth-token",t);
-   // console.log(req.header("x-auth-token"));
+   
  
 
    
