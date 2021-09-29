@@ -1,7 +1,6 @@
-
 const mongoose = require("mongoose");
 
-const db ={};
+const db = {};
 db.mongoose = mongoose;
 db.adresses = require("./address.model")(mongoose);
 db.orders = require("./order.model")(mongoose);
